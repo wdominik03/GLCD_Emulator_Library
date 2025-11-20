@@ -66,7 +66,7 @@ main (int    argc,
 }
 ```
 
-This example renders a "DVD screensaver" using an 8x8 box with a framerate of 20 fps. Screen size is set to 128 x 64 pixels, with a scaling factor of 6.
+This example renders a "DVD screensaver" using an 8x8 box with a framerate of 20 fps. Screen size is set to 128 x 96 pixels, with a scaling factor of 6.
 ## Interface documentation
 This is a barebones documentation for the public facing interface exposed in the ```glcd_emu.h``` header. You may try to access other functions directly from the library file, but it is not recommended.
 ### struct emu_state
@@ -111,7 +111,7 @@ int setup_window(int width, int height, int scale, int refresh_rate);
 ```
 - ```return```: GTK application status after exiting
 - ```width```: This integer sets the width of the emulated display in pixels, limited between ```16``` and ```1024```
-- ```height```: This integer sets the height of the emulated display in pixels, limited between ```16``` and ```1024```
+- ```height```: This integer sets the height of the emulated display in pixels, limited between ```16``` and ```1024```. If a value not divisible by 8 is entered, value is automatically rounded down to the next number divisible by 8
 - ```scale```: This integer sets the scale of the visualization, in multiples of pixels, limited between ```1``` and ```25```
 - ```refresh_rate```: This integer sets the refresh rate of the emulated display in hertz. The ```on_tick_function``` is called and ```state.tick``` is incremented on every refresh. Limited between ```1```-```1000```
 This function calls the GTK application manager under the hood, therefore it is thread-blocking. To interact with the emulator while the window is opened, use the ```on_tick_function```
